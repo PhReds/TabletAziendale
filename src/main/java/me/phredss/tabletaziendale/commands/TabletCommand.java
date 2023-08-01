@@ -32,12 +32,13 @@ public class TabletCommand implements CommandExecutor {
                     player.sendMessage("§6Usa - /azienda help - per la lista dei comandi.");
                 } else if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
                     //Azienda Help
-                    player.sendMessage("§6Ecco la lista dei comandi:" +
-                            "        " +
-                            "§6 /Azienda help - Mostra la lista dei comandi" +
-                            "§6 /Azienda tablet - Givva un tablet aziendale" +
-                            "        " +
-                            "§6 -------------");
+                    player.sendMessage("§6Ecco la lista dei comandi:");
+                    player.sendMessage(" ");
+                    player.sendMessage("§6 /Azienda help - Mostra la lista dei comandi");
+                    player.sendMessage("§6 /Azienda tablet - Givva un tablet aziendale");
+                    player.sendMessage("        ");
+                    player.sendMessage("§6 -------------");
+
                 } else if (args.length == 1 && args[0].equalsIgnoreCase("tablet")) {
                     System.out.println("Item Givvato");
                     //Tablet Aziendale

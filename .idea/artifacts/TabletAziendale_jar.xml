@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TabletAziendale:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TabletAziendale_jar</output-path>
+    <root id="archive" name="TabletAziendale.jar">
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/mrivanplays/conversations-spigot/0.0.2-SNAPSHOT/conversations-spigot-0.0.2-20221222.185852-1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/mrivanplays/conversations-base/0.0.2-SNAPSHOT/conversations-base-0.0.2-20221222.185852-1.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+    </root>
+  </artifact>
+</component>

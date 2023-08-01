@@ -25,6 +25,8 @@ import java.util.List;
 
 public class StampaContratto implements Listener {
 
+
+
     TabletAziendale main = TabletAziendale.getPlugin(TabletAziendale.class);
 
     @EventHandler
@@ -32,16 +34,15 @@ public class StampaContratto implements Listener {
         Player player = (Player) event.getWhoClicked();
 
         if (event.getView().getTitle().equals("§6Conferma della Stampa")) {
-            int slot = event.getSlot();
+            int slot = event.getRawSlot();
             event.setCancelled(true);
             ItemStack clicked = event.getCurrentItem();
-            if (slot == 11 || clicked.getItemMeta().getDisplayName().equals("§a§lConferma Stampa")) {
+            if (slot == 11 || clicked.getItemMeta().getDisplayName().equalsIgnoreCase("§a§lConferma Stampa")) {
                 player.closeInventory();
-                System.out.println("Terza Gui Aperta");
 
                 BukkitConversationManager convoManager =
                         new BukkitConversationManager(main); // this being a Plugin instance
-                convoManager
+                 convoManager
                         .newConversationBuilder(player)
                         .withQuestion(Question.of("utente", "§e§lQuale utente devi assumere?"))
                         .withQuestion(Question.of("azienda", "§e§lPer quale Azienda?"))
@@ -50,9 +51,12 @@ public class StampaContratto implements Listener {
                                 context -> {
 
 
-                                    if(player.hasPermission("azienda.direttore." + context.getInput("azienda"))) {
+                                    if(!player.hasPermission("azienda.direttore." + context.getInput("azienda"))) {
+                                        player.sendMessage(ChatColor.RED + "Non puoi assumere per questa azienda");
+                                        return;
+                                    }
                                         BukkitConversationPartner partner = context.getConversationPartner();
-                                        Inventory inv = player.getInventory();
+
                                         ItemStack contrattostampa = new ItemStack(Material.PAPER, 1);
                                         ItemMeta metacon = contrattostampa.getItemMeta();
                                         List<String> lores = new ArrayList<String>();
@@ -70,7 +74,7 @@ public class StampaContratto implements Listener {
                                         lores.add(ChatColor.YELLOW + "- " + context.getInput("ruolo"));
                                         lores.add(" ");
                                         lores.add("§6§lDirettore:");
-                                        lores.add(ChatColor.YELLOW + "- " + player);
+                                        lores.add(ChatColor.YELLOW + "- " + player.getName());
                                         lores.add("§e――――――――");
                                         metacon.setLore(lores);
                                         contrattostampa.setItemMeta(metacon);
@@ -91,23 +95,20 @@ public class StampaContratto implements Listener {
                                             player.sendMessage("§c§lUtente troppo lontano, annullata stampa del contratto.");
                                             return;
                                         }
-                                        if (!player.hasPermission("azienda.direttore." + contratto.get(new NamespacedKey(TabletAziendale.getPlugin(), "azienda"), PersistentDataType.STRING))) return;
-
+                                        Inventory inv = target.getInventory();
 
 
                                         contratto.set(new NamespacedKey(TabletAziendale.getPlugin(), "utente"), PersistentDataType.STRING, utente);
                                         contratto.set(new NamespacedKey(TabletAziendale.getPlugin(), "azienda"), PersistentDataType.STRING, azienda);
                                         contratto.set(new NamespacedKey(TabletAziendale.getPlugin(), "ruolo"), PersistentDataType.STRING, ruolo);
                                         contrattostampa.setItemMeta(metacon);
-                                        player.sendMessage("Utente: " + contratto.get(new NamespacedKey(TabletAziendale.getPlugin(), "utente"), PersistentDataType.STRING) + " Azienda: " + contratto.get(new NamespacedKey(TabletAziendale.getPlugin(), "azienda"), PersistentDataType.STRING) + " Ruolo: " + contratto.get(new NamespacedKey(TabletAziendale.getPlugin(), "ruolo"), PersistentDataType.STRING));
 
 
                                         player.sendMessage("§6§lStai stampando il contratto...");
                                         new DelayedTask(() -> {
                                             player.sendMessage(ChatColor.BOLD + "§a§lContratto Stampato con successo!");
                                             inv.addItem(contrattostampa);
-                                        }, 20 * 5);
-                                    }
+                                        }, 20 * 3);
                                 })
                         .build()
                         .start();
@@ -123,5 +124,3 @@ public class StampaContratto implements Listener {
 
     }
 }
-
-

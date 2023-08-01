@@ -20,12 +20,11 @@ public class GuiContratto implements Listener {
         Player player = (Player) event.getWhoClicked();
 
         if (event.getView().getTitle().equals("§6Tablet Aziendale")) {
-            int slot = event.getSlot();
+            int slot = event.getRawSlot();
             event.setCancelled(true);
             ItemStack clicked = event.getCurrentItem();
             if (slot == 11 || clicked.getItemMeta().getDisplayName().equals("§aStampa Contratto")) {
                 player.closeInventory();
-                System.out.println("Seconda Gui Aperta");
 
                 Inventory confermacontratto = Bukkit.createInventory(null, 27, "§6Conferma della Stampa");
                 ItemStack conferma = new ItemStack(Material.PAPER, 1);

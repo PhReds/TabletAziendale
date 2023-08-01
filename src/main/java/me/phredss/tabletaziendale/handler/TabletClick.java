@@ -1,6 +1,7 @@
 package me.phredss.tabletaziendale.handler;
 
 
+import me.phredss.tabletaziendale.util.TranslateUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -28,7 +29,8 @@ public class TabletClick implements Listener {
                 else {
                     Inventory guiPrima = Bukkit.createInventory(player, 27, "§6Tablet Aziendale");
                     player.openInventory(guiPrima);
-                    System.out.println("Item Aperto e Prima Gui");
+
+                    //Stampa Contratto
 
                     ItemStack item1 = new ItemStack(Material.PAPER, 1);
                     ItemMeta meta1 = item1.getItemMeta();
@@ -37,11 +39,31 @@ public class TabletClick implements Listener {
                     lores.add("    ");
                     lores.add("§6Clicca per stampare");
                     lores.add("§6Un contratto Aziendale");
+                    lores.add("    ");
                     meta1.setLore(lores);
                     item1.setItemMeta(meta1);
 
+
+
+                    //Licenzia
+
+                    ItemStack item2 = new ItemStack(Material.STRUCTURE_VOID, 1);
+                    ItemMeta meta2 = item2.getItemMeta();
+                    List<String> lores2 = new ArrayList<>();
+                    meta2.setDisplayName("§cLicenzia Dipendente");
+                    lores2.add("    ");
+                    lores2.add("§6Clicca per licenziare");
+                    lores2.add("§6Un dipendente dell'Azienda");
+                    lores2.add("    ");
+                    meta2.setLore(lores2);
+                    item2.setItemMeta(meta2);
+
+
+                    //Item settati in GUI
                     guiPrima.setItem(11, item1);
+                    guiPrima.setItem(15, item2);
                     player.openInventory(guiPrima);
+
 
                 }
 
