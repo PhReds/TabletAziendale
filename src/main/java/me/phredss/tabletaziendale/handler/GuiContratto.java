@@ -2,7 +2,6 @@ package me.phredss.tabletaziendale.handler;
 
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,33 +13,38 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.phredss.tabletaziendale.util.Utils.*;
+
 public class GuiContratto implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getView().getTitle().equals("§6Tablet Aziendale")) {
+        if (event.getView().getTitle().equals(getInventoryName("tabletgui.nome-inv"))) {
             int slot = event.getRawSlot();
             event.setCancelled(true);
             ItemStack clicked = event.getCurrentItem();
-            if (slot == 11 || clicked.getItemMeta().getDisplayName().equals("§aStampa Contratto")) {
+            if (clicked != null && (slot == 11 || clicked.getItemMeta().getDisplayName().equals(getItemName("tabletgui.stampa-contratto")))) {
                 player.closeInventory();
 
-                Inventory confermacontratto = Bukkit.createInventory(null, 27, "§6Conferma della Stampa");
-                ItemStack conferma = new ItemStack(Material.PAPER, 1);
-                ItemStack annulla = new ItemStack(Material.BARRIER, 1);
+                Inventory confermacontratto = Bukkit.createInventory(null, 27, getInventoryName("conferma-stampa.nome-inv"));
+                //Materiale
+                ItemStack conferma = new ItemStack(getItemMaterial("conferma-stampa.conferma"), 1);
+                ItemStack annulla = new ItemStack(getItemMaterial("conferma-stampa.annulla"), 1);
                 List<String> loresconferma = new ArrayList<String>();
                 List<String> loresannulla = new ArrayList<String>();
                 ItemMeta metacon = conferma.getItemMeta();
                 ItemMeta metann = annulla.getItemMeta();
-                metacon.setDisplayName("§a§lConferma Stampa");
-                metann.setDisplayName("§c§lAnnulla Stampa");
-                loresconferma.add("§6Clicca per confermare");
-                loresconferma.add("§6La stampa del contratto");
-                loresannulla.add("§4Clicca per annullare");
-                loresannulla.add("§4La stampa del contratto");
-                metacon.setLore(loresconferma);
-                metann.setLore(loresannulla);
+                //Nome
+                metacon.setDisplayName(getItemName("conferma-stampa.conferma"));
+                metann.setDisplayName(getItemName("conferma-stampa.annulla"));;
+                //Lore
+                metacon.setLore(getItemLore("conferma-stampa.conferma"));
+                metann.setLore(getItemLore("conferma-stampa.annulla"));
+
+
+
+
                 conferma.setItemMeta(metacon);
                 annulla.setItemMeta(metann);
 
@@ -54,4 +58,6 @@ public class GuiContratto implements Listener {
         }
 
     }
+
+
 }

@@ -18,7 +18,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
-import static me.phredss.tabletaziendale.util.TranslateUtils.translate;
+import static me.phredss.tabletaziendale.util.Utils.*;
 
 public class ContrattoPex implements Listener {
 
@@ -37,21 +37,24 @@ public class ContrattoPex implements Listener {
 
 
         //Controllo Nome
-        if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§a§lContratto Aziendale")) {
+        if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(getItemNameDisplay("contratto-aziendale"))) {
 
-            String utente = item1.get(new NamespacedKey(TabletAziendale.getPlugin(), "utente"), PersistentDataType.STRING);
+            String utente = item1.get(new NamespacedKey(TabletAziendale.getPlugin(TabletAziendale.class), "utente"), PersistentDataType.STRING);
             Player utentelic = Bukkit.getPlayer(utente);
             String utenteuuid = utentelic.getUniqueId().toString();
             //Line 37
 
             if (!(player.getUniqueId().toString().equalsIgnoreCase(utenteuuid))) {
-                player.sendMessage(translate("&cNon puoi usare questo contratto in quanto non tuo."));
+                player.sendMessage(getErrorAutoAssumi("error"));
                 return;
             }
-            String azienda = item1.get(new NamespacedKey(TabletAziendale.getPlugin(), "azienda"), PersistentDataType.STRING);
-            String ruolo = item1.get(new NamespacedKey(TabletAziendale.getPlugin(), "ruolo"), PersistentDataType.STRING);
 
-            Group group = lp.getGroupManager().getGroup(azienda + "-" + ruolo);
+            String azienda = item1.get(new NamespacedKey(TabletAziendale.getPlugin(TabletAziendale.class), "azienda"), PersistentDataType.STRING);
+            String ruolo = item1.get(new NamespacedKey(TabletAziendale.getPlugin(TabletAziendale.class), "ruolo"), PersistentDataType.STRING);
+
+            Group group = lp.getGroupManager().getGroup(getConfigFile().getString("pex-format")
+                    .replace("{agency}", azienda)
+                    .replace("{role}", ruolo));
             lp.getUserManager().modifyUser(player.getUniqueId(), (User user) -> {
 
                 Node node = InheritanceNode.builder(group).build();

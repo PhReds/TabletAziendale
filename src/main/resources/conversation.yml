@@ -1,0 +1,16 @@
+conversation:
+  stampa-contratto:
+    DomandaUtente: "&e&lQuale utente devi assumere?"
+    DomandaAzienda: "§e§lPer quale Azienda?"
+    DomandaRuolo: "&e&lPer quale ruolo devi assumerlo?"
+  licenzia-dipendente:
+    DomandaUtente: "&e&lQuale utente vuoi licenziare?"
+    DomandaAzienda: "&e&lDa quale azienda lo vuoi licenziare?"
+  error:
+    utente-lontano: ""
+    utenteoff: "&c&lL'Utente non è Online o non Esiste!"
+    azienda-sbagliata-contratto: "&cNon puoi assumere per questa azienda"
+    azienda-sbagliata-licenzia: "&cNon puoi licenziare per questa azienda"
+    auto-assunzione: "&cNon puoi usare questo contratto in quanto non tuo"
+    auto-licenzia: "§cNon puoi licenziarti da solo"
+    auto-stampa-contratto: "&cNon puoi stamparti un contratto da solo"

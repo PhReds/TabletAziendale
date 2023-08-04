@@ -1,7 +1,6 @@
 package me.phredss.tabletaziendale.handler;
 
 
-import me.phredss.tabletaziendale.util.TranslateUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -16,46 +15,40 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.phredss.tabletaziendale.util.Utils.*;
+
 public class TabletClick implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (player.getInventory().getItemInHand().getType().equals(Material.PRISMARINE_SHARD) && player.getInventory().getItemInHand().getItemMeta().getDisplayName().equals("§6§lTablet Aziendale")) {
+        if (player.getInventory().getItemInHand().getType().equals(getItemMaterialDisplay("tablet-aziendale")) && player.getInventory().getItemInHand().getItemMeta().getDisplayName().equals(getItemNameDisplay("tablet-aziendale"))) {
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
                 if (!player.hasPermission("azienda.direttore")) {
                     player.sendMessage("§cNon hai il permesso di utilizzare questo tablet!");
                 }
                 else {
-                    Inventory guiPrima = Bukkit.createInventory(player, 27, "§6Tablet Aziendale");
+                    Inventory guiPrima = Bukkit.createInventory(player, 27, getInventoryName("tabletgui.nome-inv"));
                     player.openInventory(guiPrima);
 
                     //Stampa Contratto
 
-                    ItemStack item1 = new ItemStack(Material.PAPER, 1);
+                    ItemStack item1 = new ItemStack(getItemMaterial("tabletgui.stampa-contratto"), 1);
                     ItemMeta meta1 = item1.getItemMeta();
                     List<String> lores = new ArrayList<String>();
-                    meta1.setDisplayName("§aStampa Contratto");
-                    lores.add("    ");
-                    lores.add("§6Clicca per stampare");
-                    lores.add("§6Un contratto Aziendale");
-                    lores.add("    ");
-                    meta1.setLore(lores);
+                    meta1.setDisplayName(getItemName("tabletgui.stampa-contratto"));
+                    meta1.setLore(getItemLore("tabletgui.stampa-contratto"));
                     item1.setItemMeta(meta1);
 
 
 
                     //Licenzia
 
-                    ItemStack item2 = new ItemStack(Material.STRUCTURE_VOID, 1);
+                    ItemStack item2 = new ItemStack(getItemMaterial("tabletgui.licenzia"), 1);
                     ItemMeta meta2 = item2.getItemMeta();
                     List<String> lores2 = new ArrayList<>();
-                    meta2.setDisplayName("§cLicenzia Dipendente");
-                    lores2.add("    ");
-                    lores2.add("§6Clicca per licenziare");
-                    lores2.add("§6Un dipendente dell'Azienda");
-                    lores2.add("    ");
-                    meta2.setLore(lores2);
+                    meta2.setDisplayName(getItemName("tabletgui.licenzia"));
+                    meta2.setLore(getItemLore("tabletgui.licenzia"));
                     item2.setItemMeta(meta2);
 
 

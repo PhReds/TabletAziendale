@@ -18,8 +18,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
-
-import static me.phredss.tabletaziendale.util.TranslateUtils.translate;
+import static me.phredss.tabletaziendale.util.Utils.*;
 
 public class LicenziaPex implements Listener {
     TabletAziendale main = TabletAziendale.getPlugin(TabletAziendale.class);
@@ -31,11 +30,11 @@ public class LicenziaPex implements Listener {
         Player player = (Player) event.getWhoClicked();
         if (providerLP == null) return;
         LuckPerms lp = providerLP.getProvider();
-        if (event.getView().getTitle().equals("§6Tablet Aziendale")) {
+        if (event.getView().getTitle().equals(getInventoryName("tabletgui.nome-inv"))) {
             event.setCancelled(true);
             int slot = event.getRawSlot();
             ItemStack clicked = event.getCurrentItem();
-            if (slot == 15 || clicked.getItemMeta().getDisplayName().equals("§a§lConferma Stampa")) {
+            if (clicked != null && (slot == 15 || clicked.getItemMeta().getDisplayName().equals(getItemName("tabletgui.licenzia")))) {
                 player.closeInventory();
 
 
@@ -43,26 +42,27 @@ public class LicenziaPex implements Listener {
                         new BukkitConversationManager(main); // this being a Plugin instance
                 convoManager
                         .newConversationBuilder(player)
-                        .withQuestion(Question.of("utente", "§e§lQuale utente vuoi licenziare?"))
-                        .withQuestion(Question.of("azienda", "§e§lDa quale azienda lo vuoi licenziare?"))
+                        .withQuestion(Question.of("utente", getDomandaUtente("licenzia-dipendente")))
+                        .withQuestion(Question.of("azienda", getDomandaAzienda("licenzia-dipendente")))
                         .whenDone(
                                 context -> {
 
 
                                     if (!player.hasPermission("azienda.direttore." + context.getInput("azienda"))) {
-                                        player.sendMessage(ChatColor.RED + "Non puoi licenziare per questa azienda");
+                                        player.sendMessage(ChatColor.RED + getErrorAziendaSbagliataLicenzia("error"));
                                         return;
                                     }
                                     String utente = context.getInput("utente");
                                     Player target = Bukkit.getPlayer(utente);
-                                    String targetuuid = target.getUniqueId().toString();
                                     if (target == null || !target.isOnline()) {
-                                        player.sendMessage("§c§lL'Utente non è Online o non Esiste!");
+                                        player.sendMessage(getErrorUtenteOff("error"));
                                         return;
                                     }
+                                    String targetuuid = target.getUniqueId().toString();
+
 
                                     if (player.getUniqueId().toString().equalsIgnoreCase(targetuuid)) {
-                                        player.sendMessage(translate("&cNon puoi licenziarti da solo."));
+                                        player.sendMessage(getErrorAutoLicenzia("error"));
                                         return;
                                     }
 

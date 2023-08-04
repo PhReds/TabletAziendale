@@ -23,6 +23,8 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.phredss.tabletaziendale.util.Utils.*;
+
 public class StampaContratto implements Listener {
 
 
@@ -33,26 +35,26 @@ public class StampaContratto implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getView().getTitle().equals("§6Conferma della Stampa")) {
+        if (event.getView().getTitle().equals(getInventoryName("conferma-stampa.nome-inv"))) {
             int slot = event.getRawSlot();
             event.setCancelled(true);
             ItemStack clicked = event.getCurrentItem();
-            if (slot == 11 || clicked.getItemMeta().getDisplayName().equalsIgnoreCase("§a§lConferma Stampa")) {
+            if (slot == 11 || clicked.getItemMeta().getDisplayName().equalsIgnoreCase(getItemName("conferma-stampa.conferma"))) {
                 player.closeInventory();
 
                 BukkitConversationManager convoManager =
                         new BukkitConversationManager(main); // this being a Plugin instance
                  convoManager
                         .newConversationBuilder(player)
-                        .withQuestion(Question.of("utente", "§e§lQuale utente devi assumere?"))
-                        .withQuestion(Question.of("azienda", "§e§lPer quale Azienda?"))
-                        .withQuestion(Question.of("ruolo", "§e§lPer quale ruolo devi assumerlo?"))
+                        .withQuestion(Question.of("utente", getDomandaUtente("stampa-contratto")))
+                        .withQuestion(Question.of("azienda", getDomandaAzienda("stampa-contratto")))
+                        .withQuestion(Question.of("ruolo", getDomandaRuolo("stampa-contratto")))
                         .whenDone(
                                 context -> {
 
 
                                     if(!player.hasPermission("azienda.direttore." + context.getInput("azienda"))) {
-                                        player.sendMessage(ChatColor.RED + "Non puoi assumere per questa azienda");
+                                        player.sendMessage(ChatColor.RED + getErrorAziendaSbagliataContratto("error"));
                                         return;
                                     }
                                         BukkitConversationPartner partner = context.getConversationPartner();
@@ -60,7 +62,7 @@ public class StampaContratto implements Listener {
                                         ItemStack contrattostampa = new ItemStack(Material.PAPER, 1);
                                         ItemMeta metacon = contrattostampa.getItemMeta();
                                         List<String> lores = new ArrayList<String>();
-                                        metacon.setDisplayName("§a§lContratto Aziendale");
+                                        metacon.setDisplayName(getItemNameDisplay("contratto-aziendale"));
                                         lores.add("§e――――――――");
                                         lores.add(" §6Informazioni Contratto");
                                         lores.add("  ");
@@ -87,20 +89,27 @@ public class StampaContratto implements Listener {
 
                                         Player target = Bukkit.getPlayer(utente);
                                         if (target == null || !target.isOnline()) {
-                                            player.sendMessage("§c§lL'Utente non è Online o non Esiste!");
+                                            player.sendMessage(getErrorUtenteOff("error"));
+                                            return;
+                                        }
+                                        String direttoreid = player.getUniqueId().toString();
+                                        String targetid = target.getUniqueId().toString();
+
+                                        if (direttoreid.equals(targetid)) {
+                                            player.sendMessage(getErrorAutoAssumiStampa("error"));
                                             return;
                                         }
 
                                         if (player.getLocation().distance(target.getLocation()) >= 10) {
-                                            player.sendMessage("§c§lUtente troppo lontano, annullata stampa del contratto.");
+                                            player.sendMessage(getErrorUtenteLontano("error"));
                                             return;
                                         }
                                         Inventory inv = target.getInventory();
 
 
-                                        contratto.set(new NamespacedKey(TabletAziendale.getPlugin(), "utente"), PersistentDataType.STRING, utente);
-                                        contratto.set(new NamespacedKey(TabletAziendale.getPlugin(), "azienda"), PersistentDataType.STRING, azienda);
-                                        contratto.set(new NamespacedKey(TabletAziendale.getPlugin(), "ruolo"), PersistentDataType.STRING, ruolo);
+                                        contratto.set(new NamespacedKey(TabletAziendale.getPlugin(TabletAziendale.class), "utente"), PersistentDataType.STRING, utente);
+                                        contratto.set(new NamespacedKey(TabletAziendale.getPlugin(TabletAziendale.class), "azienda"), PersistentDataType.STRING, azienda);
+                                        contratto.set(new NamespacedKey(TabletAziendale.getPlugin(TabletAziendale.class), "ruolo"), PersistentDataType.STRING, ruolo);
                                         contrattostampa.setItemMeta(metacon);
 
 
@@ -114,7 +123,7 @@ public class StampaContratto implements Listener {
                         .start();
 
 
-            } else if (slot == 15 || clicked.getItemMeta().getDisplayName().equals("§c§lAnnulla Stampa")) {
+            } else if (slot == 15 || clicked.getItemMeta().getDisplayName().equals(getItemName("conferma-stampa.annulla"))) {
                 event.setCancelled(true);
                 player.closeInventory();
             }

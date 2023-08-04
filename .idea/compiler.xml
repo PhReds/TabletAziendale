@@ -9,8 +9,5 @@
         <module name="TabletAziendale" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="TabletAziendale" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

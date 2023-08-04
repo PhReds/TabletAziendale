@@ -2,12 +2,10 @@ name: TabletAziendale
 version: ${spigot.version}
 main: me.phredss.tabletaziendale.TabletAziendale
 api-version: 1.16
+authors: [_PhReds, AlessandroZap]
+depend: [LuckPerms]
 commands:
   azienda:
     description: Comando Azienda
     aliases:
       - az
-    usage: /<command>
-  prova:
-    description: blabla
-    usage: </command>

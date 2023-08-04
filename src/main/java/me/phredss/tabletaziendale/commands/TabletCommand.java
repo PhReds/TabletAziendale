@@ -13,6 +13,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.phredss.tabletaziendale.util.Utils.*;
+
 public class TabletCommand implements CommandExecutor {
 
     @Override
@@ -29,10 +31,10 @@ public class TabletCommand implements CommandExecutor {
                 //Ha permesso
                 if (args.length < 1) {
                     //Lunghezza 0
-                    player.sendMessage("§6Usa - /azienda help - per la lista dei comandi.");
+                    player.sendMessage(CustomPrefix + "§6Usa - /azienda help - per la lista dei comandi.");
                 } else if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
                     //Azienda Help
-                    player.sendMessage("§6Ecco la lista dei comandi:");
+                    player.sendMessage(CustomPrefix + "§6Ecco la lista dei comandi:");
                     player.sendMessage(" ");
                     player.sendMessage("§6 /Azienda help - Mostra la lista dei comandi");
                     player.sendMessage("§6 /Azienda tablet - Givva un tablet aziendale");
@@ -42,22 +44,20 @@ public class TabletCommand implements CommandExecutor {
                 } else if (args.length == 1 && args[0].equalsIgnoreCase("tablet")) {
                     System.out.println("Item Givvato");
                     //Tablet Aziendale
-                    ItemStack tablet = new ItemStack(Material.PRISMARINE_SHARD, 1);
+                    ItemStack tablet = new ItemStack(getItemMaterialDisplay("tablet-aziendale"), 1);
                     Inventory inv = player.getInventory();
 
                     ItemMeta meta = tablet.getItemMeta();
                     List<String> lores = new ArrayList<String>();
-                    meta.setDisplayName("§6§lTablet Aziendale");
-                    lores.add("§eTablet Contenente le principali funzioni Aziendali");
-                    lores.add("§cUtilizzabile solo dai Direttori Aziendali!");
                     meta.setUnbreakable(true);
-                    meta.setLore(lores);
+                    meta.setDisplayName(getItemNameDisplay("tablet-aziendale"));
+                    meta.setLore(getItemLoreDisplay("tablet-aziendale"));
                     meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
                     tablet.setItemMeta(meta);
 
                     inv.addItem(tablet);
                 } else {
-                    player.sendMessage("§6Usa - /azienda help - per la lista dei comandi.");
+                    player.sendMessage(CustomPrefix + "§6Usa - /azienda help - per la lista dei comandi.");
                 }
             }
         }

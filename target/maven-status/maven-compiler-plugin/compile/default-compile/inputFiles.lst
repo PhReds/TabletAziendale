@@ -2,7 +2,7 @@ C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\com\mrivanplays\conv
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\com\mrivanplays\conversations\base\timeout\TimeoutTask.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletaziendale\handler\GuiContratto.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\com\mrivanplays\conversations\base\question\ChainedQuestion.java
-C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletaziendale\util\TranslateUtils.java
+C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletaziendale\util\Utils.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\com\mrivanplays\conversations\spigot\BukkitConversationManager.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\com\mrivanplays\conversations\spigot\SpigotConversationPartner.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletaziendale\TabletAziendale.java
@@ -14,6 +14,7 @@ C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletazi
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletaziendale\handler\StampaContratto.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletaziendale\licenza\AdvancedLicense.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletaziendale\commands\TabletCommand.java
+C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletaziendale\config\FileManager.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\com\mrivanplays\conversations\base\ConversationManager.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\me\phredss\tabletaziendale\handler\luckperms\ContrattoPex.java
 C:\Users\_PhReds\IdeaProjects\TabletAziendale\src\main\java\com\mrivanplays\conversations\base\Conversation.java

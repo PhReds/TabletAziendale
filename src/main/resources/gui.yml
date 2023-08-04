@@ -1,0 +1,34 @@
+gui:
+  tabletgui:
+    nome-inv: "§6Tablet Aziendale"
+    stampa-contratto:
+      materiale: "PAPER" #Prendere dalla lista di spigot
+      nome: "&aStampa Contratto"
+      lore:
+        - "    "
+        - "§6Clicca per stampare"
+        - "§6Un contratto Aziendale"
+        - "    "
+    licenzia:
+      materiale: "STRUCTURE_VOID" #Prendere dalla lista di spigot
+      nome: "§cLicenzia Dipendente"
+      lore:
+        - "    "
+        - "§6Clicca per licenziare"
+        - "§6Un dipendente dell'Azienda"
+        - "    "
+  conferma-stampa: #Gui della conferma del contratto
+    nome-inv: "§6Conferma della Stampa"
+    conferma:
+      materiale: "PAPER" #Prendere dalla lista di spigot
+      nome: "&e&lConferma"
+      lore:
+        - "&6Clicca per confermare"
+        - "&6La stampa del contratto"
+    annulla:
+      materiale: "BARRIER" #Prendere dalla lista di spigot
+      nome: "&c&lAnnulla"
+      lore:
+          - "&4Clicca per annullare"
+          - "&4La stampa del contratto"
+
