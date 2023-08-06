@@ -1,11 +1,13 @@
-name: TabletAziendale
-version: ${spigot.version}
+name: AgencyHelper
+version: 0.1
 main: me.phredss.tabletaziendale.TabletAziendale
 api-version: 1.16
-authors: [_PhReds, AlessandroZap]
+authors: [_PhReds]
 depend: [LuckPerms]
 commands:
-  azienda:
-    description: Comando Azienda
+  agency:
+    description: Agency Helper
     aliases:
+      - ag
+      - azienda
       - az

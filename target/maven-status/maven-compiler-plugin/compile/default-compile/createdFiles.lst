@@ -2,6 +2,7 @@ com\mrivanplays\conversations\base\Conversation$Builder.class
 com\mrivanplays\conversations\spigot\SpigotConvoListener.class
 com\mrivanplays\conversations\spigot\BukkitTimeoutScheduler$BukkitTimeoutTask.class
 com\mrivanplays\conversations\spigot\SpigotConversationManager.class
+me\phredss\tabletaziendale\handler\luckperms\LicenziaConferma.class
 me\phredss\tabletaziendale\licenza\AdvancedLicense$ValidationType.class
 com\mrivanplays\conversations\base\question\ChainedQuestion$ComputeContext.class
 com\mrivanplays\conversations\spigot\BukkitConversationPartner.class

@@ -22,43 +22,42 @@ public class TabletClick implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (player.getInventory().getItemInHand().getType().equals(getItemMaterialDisplay("tablet-aziendale")) && player.getInventory().getItemInHand().getItemMeta().getDisplayName().equals(getItemNameDisplay("tablet-aziendale"))) {
+        if (player.getInventory().getItemInHand().getType().equals(getItemMaterialDisplay("agency-tablet")) && player.getInventory().getItemInHand().getItemMeta().getDisplayName().equals(getItemNameDisplay("agency-tablet"))) {
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
                 if (!player.hasPermission("azienda.direttore")) {
-                    player.sendMessage("§cNon hai il permesso di utilizzare questo tablet!");
+                    player.sendMessage(getPrefix() + getMessaggesNoPermission("general"));
                 }
-                else {
-                    Inventory guiPrima = Bukkit.createInventory(player, 27, getInventoryName("tabletgui.nome-inv"));
-                    player.openInventory(guiPrima);
+                Inventory guiPrima = Bukkit.createInventory(player, 27, getInventoryName("tabletgui.name-inv"));
+                player.openInventory(guiPrima);
 
-                    //Stampa Contratto
+                //Stampa Contratto
 
-                    ItemStack item1 = new ItemStack(getItemMaterial("tabletgui.stampa-contratto"), 1);
-                    ItemMeta meta1 = item1.getItemMeta();
-                    List<String> lores = new ArrayList<String>();
-                    meta1.setDisplayName(getItemName("tabletgui.stampa-contratto"));
-                    meta1.setLore(getItemLore("tabletgui.stampa-contratto"));
-                    item1.setItemMeta(meta1);
-
+                ItemStack item1 = new ItemStack(getItemMaterial("tabletgui.print-contract"), 1);
+                ItemMeta meta1 = item1.getItemMeta();
+                List<String> lores = new ArrayList<String>();
+                meta1.setDisplayName(getItemName("tabletgui.print-contract"));
+                meta1.setLore(getItemLore("tabletgui.print-contract"));
+                item1.setItemMeta(meta1);
 
 
-                    //Licenzia
 
-                    ItemStack item2 = new ItemStack(getItemMaterial("tabletgui.licenzia"), 1);
-                    ItemMeta meta2 = item2.getItemMeta();
-                    List<String> lores2 = new ArrayList<>();
-                    meta2.setDisplayName(getItemName("tabletgui.licenzia"));
-                    meta2.setLore(getItemLore("tabletgui.licenzia"));
-                    item2.setItemMeta(meta2);
+                //Licenzia
 
-
-                    //Item settati in GUI
-                    guiPrima.setItem(11, item1);
-                    guiPrima.setItem(15, item2);
-                    player.openInventory(guiPrima);
+                ItemStack item2 = new ItemStack(getItemMaterial("tabletgui.dismiss"), 1);
+                ItemMeta meta2 = item2.getItemMeta();
+                List<String> lores2 = new ArrayList<>();
+                meta2.setDisplayName(getItemName("tabletgui.dismiss"));
+                meta2.setLore(getItemLore("tabletgui.dismiss"));
+                item2.setItemMeta(meta2);
 
 
-                }
+                //Item settati in GUI
+                guiPrima.setItem(11, item1);
+                guiPrima.setItem(15, item2);
+                player.openInventory(guiPrima);
+
+
+
 
 
             }

@@ -20,28 +20,25 @@ public class GuiContratto implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getView().getTitle().equals(getInventoryName("tabletgui.nome-inv"))) {
+        if (event.getView().getTitle().equals(getInventoryName("tabletgui.name-inv"))) {
             int slot = event.getRawSlot();
             event.setCancelled(true);
             ItemStack clicked = event.getCurrentItem();
-            if (clicked != null && (slot == 11 || clicked.getItemMeta().getDisplayName().equals(getItemName("tabletgui.stampa-contratto")))) {
+            if (clicked != null && (slot == 11 || clicked.getItemMeta().getDisplayName().equals(getItemName("tabletgui.print-contract")))) {
                 player.closeInventory();
 
-                Inventory confermacontratto = Bukkit.createInventory(null, 27, getInventoryName("conferma-stampa.nome-inv"));
+                Inventory confermacontratto = Bukkit.createInventory(null, 27, getInventoryName("print-confirmation.name-inv"));
                 //Materiale
-                ItemStack conferma = new ItemStack(getItemMaterial("conferma-stampa.conferma"), 1);
-                ItemStack annulla = new ItemStack(getItemMaterial("conferma-stampa.annulla"), 1);
-                List<String> loresconferma = new ArrayList<String>();
-                List<String> loresannulla = new ArrayList<String>();
+                ItemStack conferma = new ItemStack(getItemMaterial("print-confirmation.confirm"), 1);
+                ItemStack annulla = new ItemStack(getItemMaterial("print-confirmation.cancel"), 1);
                 ItemMeta metacon = conferma.getItemMeta();
                 ItemMeta metann = annulla.getItemMeta();
                 //Nome
-                metacon.setDisplayName(getItemName("conferma-stampa.conferma"));
-                metann.setDisplayName(getItemName("conferma-stampa.annulla"));;
+                metacon.setDisplayName(getItemName("print-confirmation.confirm"));
+                metann.setDisplayName(getItemName("print-confirmation.cancel"));;
                 //Lore
-                metacon.setLore(getItemLore("conferma-stampa.conferma"));
-                metann.setLore(getItemLore("conferma-stampa.annulla"));
-
+                metacon.setLore(getItemLore("print-confirmation.confirm"));
+                metann.setLore(getItemLore("print-confirmation.cancel"));
 
 
 

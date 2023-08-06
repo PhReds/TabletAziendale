@@ -1,10 +1,16 @@
 item:
-  tablet-aziendale:
-    materiale: "PRISMARINE_SHARD" #Prendere dalla lista di spigot
-    nome: "§6§lTablet Aziendale"
+  agency-tablet:
+    material: "PRISMARINE_SHARD" #Prendere dalla lista di spigot
+    name: "§6§lAgency Tablet"
     lore:
-      - "§eTablet Contenente le principali funzioni Aziendali"
-      - "§cUtilizzabile solo dai Direttori Aziendali!"
-  contratto-aziendale:
-    materiale: "PAPER" #Prendere dalla lista di spigot
-    nome: "§a§lContratto Aziendale"
+      - "§eTablet Containing Key Business Functions"
+      - "§cUsable only by Corporate Directors!"
+  company-contract:
+    material: "PAPER" #Prendere dalla lista di spigot
+    name: "§a§lCompany Contract"
+    #translate the things below into your own language // Traduci le cose sottostanti nella tua lingua
+    contract-information: "Contract Information"
+    user: "User"
+    agency: "Agency"
+    role: "Role"
+    director: "Director"

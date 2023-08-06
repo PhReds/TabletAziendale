@@ -12,7 +12,7 @@ public class AziendaTabCompletion implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args) {
 
-        if (command.getName().equalsIgnoreCase("azienda")) {
+        if (command.getName().equalsIgnoreCase("agency")) {
             if (args.length == 1) {
                 List<String> aziendaTab = new ArrayList<>();
                 aziendaTab.add("help");

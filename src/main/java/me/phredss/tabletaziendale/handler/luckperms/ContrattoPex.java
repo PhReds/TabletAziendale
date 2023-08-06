@@ -37,7 +37,7 @@ public class ContrattoPex implements Listener {
 
 
         //Controllo Nome
-        if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(getItemNameDisplay("contratto-aziendale"))) {
+        if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(getItemNameDisplay("company-contract"))) {
 
             String utente = item1.get(new NamespacedKey(TabletAziendale.getPlugin(TabletAziendale.class), "utente"), PersistentDataType.STRING);
             Player utentelic = Bukkit.getPlayer(utente);
@@ -45,7 +45,7 @@ public class ContrattoPex implements Listener {
             //Line 37
 
             if (!(player.getUniqueId().toString().equalsIgnoreCase(utenteuuid))) {
-                player.sendMessage(getErrorAutoAssumi("error"));
+                player.sendMessage(getPrefix() + getErrorAutoAssumi("error"));
                 return;
             }
 
@@ -61,7 +61,7 @@ public class ContrattoPex implements Listener {
 
                 user.data().add(node);
 
-                player.sendMessage(translate("&aSei stato assunto come " + ruolo + " nell'azienda " + azienda + "."));
+                player.sendMessage(getPrefix() + translate(getMessagesAssumi("general")));
                 String string = group.getName();
                 System.out.println(string);
                 player.getInventory().remove(player.getInventory().getItemInMainHand());

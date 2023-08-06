@@ -27,47 +27,50 @@ public class LicenziaPex implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
+
         Player player = (Player) event.getWhoClicked();
         if (providerLP == null) return;
         LuckPerms lp = providerLP.getProvider();
-        if (event.getView().getTitle().equals(getInventoryName("tabletgui.nome-inv"))) {
+        if (event.getView().getTitle().equals(getInventoryName("confirmation-dismissal.name-inv"))) {
             event.setCancelled(true);
             int slot = event.getRawSlot();
             ItemStack clicked = event.getCurrentItem();
-            if (clicked != null && (slot == 15 || clicked.getItemMeta().getDisplayName().equals(getItemName("tabletgui.licenzia")))) {
+            if (clicked != null && (slot == 11 || clicked.getItemMeta().getDisplayName().equals(getItemName("confirmation-dismissal.confirm")))) {
                 player.closeInventory();
 
 
                 BukkitConversationManager convoManager =
-                        new BukkitConversationManager(main); // this being a Plugin instance
+                        new BukkitConversationManager(main);
                 convoManager
                         .newConversationBuilder(player)
-                        .withQuestion(Question.of("utente", getDomandaUtente("licenzia-dipendente")))
-                        .withQuestion(Question.of("azienda", getDomandaAzienda("licenzia-dipendente")))
+                        .withQuestion(Question.of("utente", getDomandaUtente("Fires-Employee")))
+                        .withQuestion(Question.of("azienda", getDomandaAzienda("Fires-Employee")))
                         .whenDone(
                                 context -> {
 
 
                                     if (!player.hasPermission("azienda.direttore." + context.getInput("azienda"))) {
-                                        player.sendMessage(ChatColor.RED + getErrorAziendaSbagliataLicenzia("error"));
+                                        player.sendMessage(getPrefix() + ChatColor.RED + getErrorAziendaSbagliataLicenzia("error"));
                                         return;
                                     }
+
                                     String utente = context.getInput("utente");
                                     Player target = Bukkit.getPlayer(utente);
                                     if (target == null || !target.isOnline()) {
-                                        player.sendMessage(getErrorUtenteOff("error"));
+                                        player.sendMessage(getPrefix() + getErrorUtenteOff("error"));
                                         return;
                                     }
+
                                     String targetuuid = target.getUniqueId().toString();
 
 
                                     if (player.getUniqueId().toString().equalsIgnoreCase(targetuuid)) {
-                                        player.sendMessage(getErrorAutoLicenzia("error"));
+                                        player.sendMessage(getPrefix() + getErrorAutoLicenzia("error"));
                                         return;
                                     }
 
 
-                                    player.sendMessage("§c§lStai licenziando " + target.getName() + ".");
+
                                     new DelayedTask(() -> {
                                         lp.getUserManager().modifyUser(target.getUniqueId(), (User user) -> {
                                             Group group = lp.getGroupManager().getGroup(user.getPrimaryGroup());
@@ -78,14 +81,21 @@ public class LicenziaPex implements Listener {
                                             Node node = InheritanceNode.builder(group).build();
 
                                             user.data().remove(node);
+                                            String aName = context.getInput("azienda");
+                                            String format = getConfigFile().getString("pex-format");
 
-                                            target.sendMessage(translate(ChatColor.RED + "Sei stato licenziato!"));
+                                            player.sendMessage(getPrefix() + getMessagesLicenziaTu("general")
+                                                    .replace("{agency}", aName));
+
+                                            target.sendMessage(getPrefix() + getMessagesLicenzia("general"));
                                         });
                                     }, 20 * 3);
                                 })
                         .build()
                         .start();
 
+            } else if (clicked != null && (slot == 15 || clicked.getItemMeta().getDisplayName().equals(getItemName("print-confirm.cancel")))){
+                player.closeInventory();
             }
         }
 

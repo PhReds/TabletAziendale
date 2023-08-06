@@ -1,0 +1,16 @@
+messages:
+  general:
+    no-permissions: "&cYou don't have permission!"
+    you-were-fired: "&cYou were fired"
+    you-fired-a-person: "&cYou fired a person"
+    you-have-been-hired: "&aYou have been hired into a company!"
+    contract-printing: "&6You are printing the contract..."
+    printed-contract: "&aSuccessfully printed contract"
+    wrong-command: "&6Use - /company help - for the list of commands."
+    command-help:
+      line-one: "&6Here is the list of commands:"
+      line-two: " "
+      line-three: "&6 /Agency help - Show the list of commands."
+      line-four: "&6 /Agency tablet - Givva an enterprise tablet"
+      line-five: ""
+

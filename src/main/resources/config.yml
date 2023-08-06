@@ -25,3 +25,7 @@
 LICENSE-KEY: 'YOUR-LICENSE-KEY'
 
 pex-format: "{agency}-{role}"
+
+prefix: "&e[&6&lAgency&e]&r "
+
+bstats: true

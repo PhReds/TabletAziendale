@@ -1,34 +1,48 @@
 gui:
   tabletgui:
-    nome-inv: "§6Tablet Aziendale"
-    stampa-contratto:
-      materiale: "PAPER" #Prendere dalla lista di spigot
-      nome: "&aStampa Contratto"
+    name-inv: "§6Agency Tablet"
+    print-contract:
+      material: "PAPER" #Prendere dalla lista di spigot
+      name: "&aPrint Contract"
       lore:
         - "    "
-        - "§6Clicca per stampare"
-        - "§6Un contratto Aziendale"
+        - "§6Click to print"
+        - "§6A Company Contract"
         - "    "
-    licenzia:
-      materiale: "STRUCTURE_VOID" #Prendere dalla lista di spigot
-      nome: "§cLicenzia Dipendente"
+    dismiss:
+      material: "STRUCTURE_VOID" #Prendere dalla lista di spigot
+      name: "§cFire an employer"
       lore:
         - "    "
-        - "§6Clicca per licenziare"
-        - "§6Un dipendente dell'Azienda"
+        - "§6Click to fire"
+        - "§6An employee of the Company" #use {AGENCY} for agency's name
         - "    "
-  conferma-stampa: #Gui della conferma del contratto
-    nome-inv: "§6Conferma della Stampa"
-    conferma:
-      materiale: "PAPER" #Prendere dalla lista di spigot
-      nome: "&e&lConferma"
+  print-confirmation: #Gui della conferma del contratto
+    name-inv: "§6Press Confirmation"
+    confirm:
+      material: "PAPER" #Prendere dalla lista di spigot
+      name: "&a&lConfirm"
       lore:
-        - "&6Clicca per confermare"
-        - "&6La stampa del contratto"
-    annulla:
-      materiale: "BARRIER" #Prendere dalla lista di spigot
-      nome: "&c&lAnnulla"
+        - "&6Click to confirm"
+        - "&6The printing of the contract"
+    cancel:
+      material: "BARRIER" #Prendere dalla lista di spigot
+      name: "&c&lCancel"
       lore:
-          - "&4Clicca per annullare"
-          - "&4La stampa del contratto"
+          - "&4Click to cancel"
+          - "&4Contract printing"
+  confirmation-dismissal:
+    name-inv: "&cConfirmation of Dismissal"
+    confirm:
+      material: "LEGACY_BOOK_AND_QUILL"
+      name: "&a&lConfirm" #Prendere dalla lista di spigot
+      lore:
+        - "&6Click to confirm"
+        - "&6The dismissal"
+    cancel:
+      material: "BARRIER" #Prendere dalla lista di spigot
+      name: "&c&lCancel"
+      lore:
+        - "&4Click to cancel"
+        - "&4The dismissal"
 

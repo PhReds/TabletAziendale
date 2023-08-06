@@ -1,16 +1,16 @@
 conversation:
-  stampa-contratto:
-    DomandaUtente: "&e&lQuale utente devi assumere?"
-    DomandaAzienda: "§e§lPer quale Azienda?"
-    DomandaRuolo: "&e&lPer quale ruolo devi assumerlo?"
-  licenzia-dipendente:
-    DomandaUtente: "&e&lQuale utente vuoi licenziare?"
-    DomandaAzienda: "&e&lDa quale azienda lo vuoi licenziare?"
+  print-contract:
+    UserQuestion: "&e&lWhich user do you need to hire in the company?"
+    CompanyQuestion: "§e§lFor which Company?"
+    RoleQuestion: "&e&lFor what role do you need to hire him?"
+  Fires-Employee:
+    UserQuestion: "&e&lWhich user do you want to fire?"
+    CompanyQuestion: "&e&lWhich company do you want to fire him from?"
   error:
-    utente-lontano: ""
-    utenteoff: "&c&lL'Utente non è Online o non Esiste!"
-    azienda-sbagliata-contratto: "&cNon puoi assumere per questa azienda"
-    azienda-sbagliata-licenzia: "&cNon puoi licenziare per questa azienda"
-    auto-assunzione: "&cNon puoi usare questo contratto in quanto non tuo"
-    auto-licenzia: "§cNon puoi licenziarti da solo"
-    auto-stampa-contratto: "&cNon puoi stamparti un contratto da solo"
+    user-far: "&cUser too far away, canceled contract printing"
+    useroff: "&c&lThe User is not Online or does not Exist!"
+    wrong-company-contract: "&cYou cannot hire for this company"
+    wrong-company-dismissal: "&cYou can't fire for this company"
+    self-hiring: "&cYou cannot use this contract as it is not yours"
+    self-dismissal: "§cYou can't fire yourself"
+    self-print-contract: "&cYou can't print a contract yourself"

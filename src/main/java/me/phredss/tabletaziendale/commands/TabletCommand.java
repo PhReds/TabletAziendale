@@ -21,44 +21,41 @@ public class TabletCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
             //Non è un Player
+        }
+        //E' un Player
+        Player player = (Player) sender;
+        if (!player.hasPermission("agency.staff")) {
+            //Non ha permesso
+            player.sendMessage(getMessaggesNoPermission("general"));
         } else {
-            //E' un Player
-            Player player = (Player) sender;
-            if (!player.hasPermission("ta.staff")) {
-                //Non ha permesso
-                player.sendMessage("§c§lNon hai il permesso!");
+            //Ha permesso
+            if (args.length < 1) {
+                //Lunghezza 0
+                player.sendMessage(getPrefix() + getMessagesComandoSbagliato("general"));
+            } else if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
+                //Azienda Help
+                player.sendMessage(getPrefix() + getLine1("command-help"));
+                player.sendMessage(getLine2("command-help"));
+                player.sendMessage(getLine3("command-help"));
+                player.sendMessage(getLine4("command-help"));
+                player.sendMessage(getLine5("command-help"));
+
+            } else if (args.length == 1 && args[0].equalsIgnoreCase("tablet")) {
+                //Tablet Aziendale
+                ItemStack tablet = new ItemStack(getItemMaterialDisplay("agency-tablet"), 1);
+                Inventory inv = player.getInventory();
+
+                ItemMeta meta = tablet.getItemMeta();
+                List<String> lores = new ArrayList<String>();
+                meta.setUnbreakable(true);
+                meta.setDisplayName(getItemNameDisplay("agency-tablet"));
+                meta.setLore(getItemLoreDisplay("agency-tablet"));
+                meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+                tablet.setItemMeta(meta);
+
+                inv.addItem(tablet);
             } else {
-                //Ha permesso
-                if (args.length < 1) {
-                    //Lunghezza 0
-                    player.sendMessage(CustomPrefix + "§6Usa - /azienda help - per la lista dei comandi.");
-                } else if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
-                    //Azienda Help
-                    player.sendMessage(CustomPrefix + "§6Ecco la lista dei comandi:");
-                    player.sendMessage(" ");
-                    player.sendMessage("§6 /Azienda help - Mostra la lista dei comandi");
-                    player.sendMessage("§6 /Azienda tablet - Givva un tablet aziendale");
-                    player.sendMessage("        ");
-                    player.sendMessage("§6 -------------");
-
-                } else if (args.length == 1 && args[0].equalsIgnoreCase("tablet")) {
-                    System.out.println("Item Givvato");
-                    //Tablet Aziendale
-                    ItemStack tablet = new ItemStack(getItemMaterialDisplay("tablet-aziendale"), 1);
-                    Inventory inv = player.getInventory();
-
-                    ItemMeta meta = tablet.getItemMeta();
-                    List<String> lores = new ArrayList<String>();
-                    meta.setUnbreakable(true);
-                    meta.setDisplayName(getItemNameDisplay("tablet-aziendale"));
-                    meta.setLore(getItemLoreDisplay("tablet-aziendale"));
-                    meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-                    tablet.setItemMeta(meta);
-
-                    inv.addItem(tablet);
-                } else {
-                    player.sendMessage(CustomPrefix + "§6Usa - /azienda help - per la lista dei comandi.");
-                }
+                player.sendMessage(getPrefix() + getMessagesComandoSbagliato("general"));
             }
         }
         return false;
